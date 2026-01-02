@@ -1,0 +1,1 @@
+var json_SPBU_8 = {"type":"FeatureCollection","name":"SPBU_8","crs":{"type":"name","properties":{"name":"urn:ogc:def:crs:OGC:1.3:CRS84"}},"features":[{"type":"Feature","properties":{"id":null,"Nama":"POM MINI BANGKIT JAYA","Tingkat":"POM MINI"},"geometry":{"type":"Point","coordinates":[109.089888801340834,-7.381048844784659]}}]}

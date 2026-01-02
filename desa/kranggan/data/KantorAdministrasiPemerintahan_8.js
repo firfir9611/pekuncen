@@ -1,0 +1,1 @@
+var json_KantorAdministrasiPemerintahan_8 = {"type":"FeatureCollection","name":"KantorAdministrasiPemerintahan_8","crs":{"type":"name","properties":{"name":"urn:ogc:def:crs:OGC:1.3:CRS84"}},"features":[{"type":"Feature","properties":{"id":null,"Nama":"Kantor Kepala Desa Kranggan"},"geometry":{"type":"Point","coordinates":[109.069497722341495,-7.338718595617437]}}]}

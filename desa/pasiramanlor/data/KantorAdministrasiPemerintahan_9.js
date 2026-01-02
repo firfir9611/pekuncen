@@ -1,0 +1,1 @@
+var json_KantorAdministrasiPemerintahan_9 = {"type":"FeatureCollection","name":"KantorAdministrasiPemerintahan_9","crs":{"type":"name","properties":{"name":"urn:ogc:def:crs:OGC:1.3:CRS84"}},"features":[{"type":"Feature","properties":{"id":null,"Nama":"Kantor Desa Pasiraman Lor"},"geometry":{"type":"Point","coordinates":[109.084655660837498,-7.366354524870355]}}]}

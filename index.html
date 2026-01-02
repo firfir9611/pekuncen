@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="apple-touch-icon" sizes="180x180" href="titleicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="titleicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="titleicon/favicon-16x16.png">
+    <link rel="manifest" href="titleicon/site.webmanifest">
+    <title>Peta Desa Digital - Beranda</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Konfigurasi warna Tailwind untuk palet Cyan */
+        :root {
+            --color-primary: 0 176 211; /* Contoh Cyan Khas (20B0D3) */
+            --color-primary-light: 46 226 255; /* Cyan lebih terang */
+            --color-text-dark: 20 20 20;
+            --color-bg-light: 247 250 252;
+        }
+
+        /* Mengganti konfigurasi default Tailwind */
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'cyan-primary': `rgb(var(--color-primary))`,
+                        'cyan-light': `rgb(var(--color-primary-light))`,
+                    },
+                }
+            }
+        }
+        
+        /* Gaya minimalis untuk font dan elemen dasar */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: rgb(var(--color-text-dark));
+            background-color: rgb(var(--color-bg-light));
+        }
+
+        /* Animasi sederhana untuk hover tombol */
+        .btn-hover-effect:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.06);
+            transition: all 0.3s ease-in-out;
+        }
+
+        /* Placeholder untuk peta */
+        #map-container {
+            height: 400px; /* Atur ketinggian peta sesuai kebutuhan */
+            background-color: #e0f7fa; /* Warna latar belakang ringan */
+            border: 1px solid #b2ebf2;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #00838f;
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body class="min-h-screen antialiased">
+
+    <header class="bg-white shadow-md sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center h-16">
+            <div class="flex-shrink-0">
+                <a href="#" class="text-xl md:text-2xl font-bold text-cyan-600 tracking-tight">Peta Digital Kecamatan Desa</a>
+            </div>
+
+            <nav class="hidden md:flex space-x-8 items-center">
+                <a href="./index.html" class="text-gray-700 hover:text-cyan-600 transition duration-150">Beranda</a>
+                
+                <div class="relative">
+                    <button id="desktop-dropdown-btn" class="flex items-center text-gray-700 hover:text-cyan-600 focus:outline-none transition duration-150">
+                        <span>Peta Desa</span>
+                        <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </button>
+                    <div id="desktop-dropdown-menu" class="hidden absolute left-0 mt-2 w-48 bg-white border border-gray-100 rounded-md shadow-lg py-2">
+                        <a href="desa/karangklesem/karangklesem.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-cyan-50 hover:text-cyan-600">Karang Klesem</a>
+                        <a href="desa/kranggan/kranggan.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-cyan-50 hover:text-cyan-600">Kranggan</a>
+                        <a href="desa/pasiramanlor/pasiramanlor.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-cyan-50 hover:text-cyan-600">Pasiraman Lor</a>
+                        <a href="desa/pekuncen/pekuncen.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-cyan-50 hover:text-cyan-600">Pekuncen</a>
+                    </div>
+                </div>
+
+                <a href="./pekuncen.html" class="text-gray-700 hover:text-cyan-600 transition duration-150">Peta Kecamatan</a>
+                <a href="./about.html" class="text-gray-700 hover:text-cyan-600 transition duration-150">Tentang Kami</a>
+            </nav>
+
+            <div class="md:hidden flex items-center">
+                <button id="mobile-menu-button" class="text-gray-700 focus:outline-none">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path id="menu-icon" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100 shadow-lg">
+        <div class="px-2 pt-2 pb-3 space-y-1">
+            <a href="./index.html" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-cyan-50">Beranda</a>
+            
+            <div>
+                <button id="mobile-dropdown-btn" class="flex justify-between items-center w-full px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-cyan-50">
+                    <span>Peta Desa</span>
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                </button>
+                <div id="mobile-dropdown-menu" class="hidden pl-4 bg-gray-50">
+                    <a href="desa/karangklesem/karangklesem.html" class="block px-3 py-2 text-sm text-gray-600 hover:text-cyan-600">Karang Klesem</a>
+                    <a href="desa/kranggan/kranggan.html" class="block px-3 py-2 text-sm text-gray-600 hover:text-cyan-600">Kranggan</a>
+                    <a href="desa/pasiramanlor/pasiramanlor.html" class="block px-3 py-2 text-sm text-gray-600 hover:text-cyan-600">Pasiraman Lor</a>
+                    <a href="desa/pekuncen/pekuncen.html" class="block px-3 py-2 text-sm text-gray-600 hover:text-cyan-600">Pekuncen</a>
+                </div>
+            </div>
+
+            <a href="./pekuncen.html" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-cyan-50">Peta Kecamatan</a>
+            <a href="./about.html" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-cyan-50">Tentang Kami</a>
+        </div>
+    </div>
+</header>
+
+    <section class="bg-cyan-light/10 py-20 sm:py-28">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight mb-4 leading-snug">
+                Memvisualisasikan Potensi Kecamatan Pekuncen
+            </h1>
+            <p class="text-xl text-gray-600 mb-8 max-w-3xl mx-auto">
+                Platform digital untuk melihat, menganalisis, dan memahami wilayah desa dengan akurat dan modern.
+            </p>
+            <div class="space-x-4 justify-center md:flex">
+                <div class="flex justify-center gap-2">
+                <a href="#peta-utama" class=" bg-white text-cyan-primary border border-cyan-primary font-semibold py-3 px-8 rounded-md shadow-md hover:bg-cyan-50 btn-hover-effect text-lg">
+                    Lihat Pratinjau Peta
+                </a>
+                
+                <a href="#informasi" class="bg-white text-cyan-primary border border-cyan-primary font-semibold py-3 px-8 rounded-md shadow-md hover:bg-cyan-50 btn-hover-effect text-lg">
+                    Pelajari Lebih Lanjut
+                </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="peta-utama" class="py-16 sm:py-24">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-center mb-10">Pratinjau Peta</h2>
+            <div id="map-container" class="rounded-lg shadow-xl overflow-hidden">
+                <img src="images/mapthumbnail.png" class="w-full" alt="">
+            </div>
+            <div class="flex mt-4">
+                <a href="./karangklesem.html" class="bg-white text-cyan-primary border border-cyan-primary font-semibold mx-auto py-3 px-8 rounded-md shadow-md hover:bg-cyan-50 btn-hover-effect text-lg">
+                        Lihat Peta Utama
+                </a>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="informasi" class="bg-gray-50 py-16 sm:py-24">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-center mb-12">Mengapa Menggunakan Peta Desa Digital?</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-white p-6 rounded-lg shadow-md border-t-4 border-cyan-primary transition duration-300 hover:shadow-xl">
+                    <div class="text-cyan-primary text-3xl mb-4">📍</div>
+                    <h3 class="text-xl font-semibold mb-2">Data Geospasial Akurat</h3>
+                    <p class="text-gray-600">Akses informasi batas wilayah, tata guna lahan, dan aset desa yang telah diverifikasi.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md border-t-4 border-cyan-primary transition duration-300 hover:shadow-xl">
+                    <div class="text-cyan-primary text-3xl mb-4">💡</div>
+                    <h3 class="text-xl font-semibold mb-2">Visualisasi Interaktif</h3>
+                    <p class="text-gray-600">Peta yang dapat di-zoom, digeser, dan menampilkan berbagai lapisan data secara real-time.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md border-t-4 border-cyan-primary transition duration-300 hover:shadow-xl">
+                    <div class="text-cyan-primary text-3xl mb-4">⚙️</div>
+                    <h3 class="text-xl font-semibold mb-2">Pengembangan Berkelanjutan</h3>
+                    <p class="text-gray-600">Memudahkan perencanaan pembangunan dan pengelolaan sumber daya desa secara efisien.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <footer id="kontak" class="bg-gray-800 text-white py-8 mt-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div class="mb-4">
+                <p class="text-lg font-semibold text-cyan-light">Peta Desa Digital</p>
+                <p class="text-sm text-gray-400 mt-1">Solusi pemetaan modern untuk administrasi desa.</p>
+            </div>
+            <nav class="flex justify-center space-x-6 text-sm mb-6">
+                <a href="./about.html" class="hover:text-cyan-primary">Tentang Kami</a>
+                <a href="#" class="hover:text-cyan-primary">Kebijakan Privasi</a>
+                <a href="#" class="hover:text-cyan-primary">Syarat Penggunaan</a>
+            </nav>
+            <p class="text-xs text-gray-500">
+                &copy; 2025 Peta Desa Digital. Semua Hak Dilindungi.
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // Contoh JavaScript sederhana untuk navigasi smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                // Hanya jalankan smooth scroll jika link mengarah ke section di halaman yang sama
+                if (this.getAttribute('href').length > 1) { 
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Contoh JS untuk mengganti warna header saat di-scroll
+        const header = document.querySelector('header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.classList.add('shadow-xl');
+            } else {
+                header.classList.remove('shadow-xl');
+            }
+        });
+    </script>
+</body>
+</html>
