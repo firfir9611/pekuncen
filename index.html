@@ -118,6 +118,40 @@
     </div>
 </header>
 
+<script>
+    // Toggle Mobile Main Menu
+const mobileBtn = document.getElementById('mobile-menu-button');
+const mobileMenu = document.getElementById('mobile-menu');
+
+mobileBtn.addEventListener('click', () => {
+    mobileMenu.classList.toggle('hidden');
+});
+
+// Toggle Dropdown Desa - Desktop
+const desktopDropBtn = document.getElementById('desktop-dropdown-btn');
+const desktopDropMenu = document.getElementById('desktop-dropdown-menu');
+
+desktopDropBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    desktopDropMenu.classList.toggle('hidden');
+});
+
+// Toggle Dropdown Desa - Mobile
+const mobileDropBtn = document.getElementById('mobile-dropdown-btn');
+const mobileDropMenu = document.getElementById('mobile-dropdown-menu');
+
+mobileDropBtn.addEventListener('click', () => {
+    mobileDropMenu.classList.toggle('hidden');
+});
+
+// Tutup dropdown jika klik di luar area menu
+window.addEventListener('click', () => {
+    if (!desktopDropMenu.classList.contains('hidden')) {
+        desktopDropMenu.classList.add('hidden');
+    }
+});
+</script>
+
     <section class="bg-cyan-light/10 py-20 sm:py-28">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight mb-4 leading-snug">
@@ -147,7 +181,7 @@
                 <img src="images/mapthumbnail.png" class="w-full" alt="">
             </div>
             <div class="flex mt-4">
-                <a href="./karangklesem.html" class="bg-white text-cyan-primary border border-cyan-primary font-semibold mx-auto py-3 px-8 rounded-md shadow-md hover:bg-cyan-50 btn-hover-effect text-lg">
+                <a href="./pekuncen.html" class="bg-white text-cyan-primary border border-cyan-primary font-semibold mx-auto py-3 px-8 rounded-md shadow-md hover:bg-cyan-50 btn-hover-effect text-lg">
                         Lihat Peta Utama
                 </a>
 
