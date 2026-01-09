@@ -152,65 +152,154 @@ window.addEventListener('click', () => {
 });
 </script>
 
-    <section class="bg-cyan-light/10 py-20 sm:py-28">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight mb-4 leading-snug">
-                Memvisualisasikan Potensi Kecamatan Pekuncen
+    <section class="bg-gradient-to-b from-cyan-50 to-white py-16 sm:py-24">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+            <span class="text-cyan-600 font-bold uppercase tracking-widest text-sm">Data Profil Wilayah</span>
+            <h1 class="text-4xl sm:text-5xl font-extrabold text-gray-900 mt-2 mb-4">
+                Kecamatan Pekuncen
             </h1>
-            <p class="text-xl text-gray-600 mb-8 max-w-3xl mx-auto">
-                Platform digital untuk melihat, menganalisis, dan memahami wilayah desa dengan akurat dan modern.
+            <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                Ringkasan data demografi, fasilitas, dan potensi wilayah Kecamatan Pekuncen berdasarkan data terbaru.
             </p>
-            <div class="space-x-4 justify-center md:flex">
-                <div class="flex justify-center gap-2">
-                <a href="#peta-utama" class=" bg-white text-cyan-primary border border-cyan-primary font-semibold py-3 px-8 rounded-md shadow-md hover:bg-cyan-50 btn-hover-effect text-lg">
-                    Lihat Pratinjau Peta
-                </a>
-                
-                <a href="#informasi" class="bg-white text-cyan-primary border border-cyan-primary font-semibold py-3 px-8 rounded-md shadow-md hover:bg-cyan-50 btn-hover-effect text-lg">
-                    Pelajari Lebih Lanjut
-                </a>
-                </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 flex flex-col items-center text-center transition-transform hover:scale-105">
+                <div class="bg-cyan-100 p-3 rounded-full mb-4 text-cyan-primary text-2xl">👥</div>
+                <span class="text-3xl font-bold text-gray-800">75.420</span>
+                <span class="text-sm text-gray-500 font-medium">Total Penduduk</span>
+            </div>
+            
+            <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 flex flex-col items-center text-center transition-transform hover:scale-105">
+                <div class="bg-cyan-100 p-3 rounded-full mb-4 text-cyan-primary text-2xl">🏡</div>
+                <span class="text-3xl font-bold text-gray-800">16</span>
+                <span class="text-sm text-gray-500 font-medium">Jumlah Desa</span>
+            </div>
+
+            <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 flex flex-col items-center text-center transition-transform hover:scale-105">
+                <div class="bg-cyan-100 p-3 rounded-full mb-4 text-cyan-primary text-2xl">📐</div>
+                <span class="text-3xl font-bold text-gray-800">92,70 <small class="text-lg">km²</small></span>
+                <span class="text-sm text-gray-500 font-medium">Luas Wilayah</span>
+            </div>
+
+            <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 flex flex-col items-center text-center transition-transform hover:scale-105">
+                <div class="bg-cyan-100 p-3 rounded-full mb-4 text-cyan-primary text-2xl">📈</div>
+                <span class="text-3xl font-bold text-gray-800">813,6</span>
+                <span class="text-sm text-gray-500 font-medium">Kepadatan /km²</span>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <section id="peta-utama" class="py-16 sm:py-24">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-3xl font-bold text-center mb-10">Pratinjau Peta</h2>
-            <div id="map-container" class="rounded-lg shadow-xl overflow-hidden">
-                <img src="images/mapthumbnail.png" class="w-full" alt="">
+<section class="py-12 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            
+            <div class="bg-gray-50 p-6 rounded-xl border border-gray-100">
+                <h3 class="text-xl font-bold mb-6 flex items-center">
+                    <span class="mr-2">🎓</span> Pendidikan
+                </h3>
+                <div class="space-y-4">
+                    <div class="flex justify-between items-center border-b border-gray-200 pb-2">
+                        <span class="text-gray-600">SD / MI</span>
+                        <span class="font-semibold text-gray-800">12 Unit</span>
+                    </div>
+                    <div class="flex justify-between items-center border-b border-gray-200 pb-2">
+                        <span class="text-gray-600">SMP / MTs</span>
+                        <span class="font-semibold text-gray-800">7 Unit</span>
+                    </div>
+                    <div class="flex justify-between items-center border-b border-gray-200 pb-2">
+                        <span class="text-gray-600">SMA / SMK / MA</span>
+                        <span class="font-semibold text-gray-800">5 Unit</span>
+                    </div>
+                </div>
             </div>
-            <div class="flex mt-4">
-                <a href="./pekuncen.html" class="bg-white text-cyan-primary border border-cyan-primary font-semibold mx-auto py-3 px-8 rounded-md shadow-md hover:bg-cyan-50 btn-hover-effect text-lg">
-                        Lihat Peta Utama
-                </a>
 
+            <div class="bg-gray-50 p-6 rounded-xl border border-gray-100">
+                <h3 class="text-xl font-bold mb-6 flex items-center">
+                    <span class="mr-2">🏥</span> Fasilitas Kesehatan
+                </h3>
+                <div class="space-y-4">
+                    <div class="flex justify-between items-center border-b border-gray-200 pb-2">
+                        <span class="text-gray-600">Puskesmas</span>
+                        <span class="font-semibold text-gray-800">2 Unit</span>
+                    </div>
+                    <div class="flex justify-between items-center border-b border-gray-200 pb-2">
+                        <span class="text-gray-600">Puskesmas Pembantu</span>
+                        <span class="font-semibold text-gray-800">4 Unit</span>
+                    </div>
+                    <div class="flex justify-between items-center border-b border-gray-200 pb-2">
+                        <span class="text-gray-600">Posyandu Aktif</span>
+                        <span class="font-semibold text-gray-800">12 Titik</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-gray-50 p-6 rounded-xl border border-gray-100">
+                <h3 class="text-xl font-bold mb-6 flex items-center">
+                    <span class="mr-2">🌾</span> Tata Guna Lahan
+                </h3>
+                <div class="space-y-4">
+                    <div>
+                        <div class="flex justify-between text-sm mb-1">
+                            <span class="text-gray-600">Lahan Pertanian</span>
+                            <span class="font-medium text-cyan-700">65%</span>
+                        </div>
+                        <div class="w-full bg-gray-200 rounded-full h-2">
+                            <div class="bg-cyan-500 h-2 rounded-full" style="width: 65%"></div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="flex justify-between text-sm mb-1">
+                            <span class="text-gray-600">Pemukiman</span>
+                            <span class="font-medium text-cyan-700">20%</span>
+                        </div>
+                        <div class="w-full bg-gray-200 rounded-full h-2">
+                            <div class="bg-cyan-500 h-2 rounded-full" style="width: 20%"></div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="flex justify-between text-sm mb-1">
+                            <span class="text-gray-600">Hutan & Lainnya</span>
+                            <span class="font-medium text-cyan-700">15%</span>
+                        </div>
+                        <div class="w-full bg-gray-200 rounded-full h-2">
+                            <div class="bg-cyan-500 h-2 rounded-full" style="width: 15%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<section id="informasi" class="bg-gray-50 py-16 sm:py-24">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="text-3xl font-bold text-center mb-12">Potensi Unggulan Kecamatan</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-md transition-shadow">
+                <h3 class="text-xl font-bold text-cyan-primary mb-3">Sektor Pertanian</h3>
+                <p class="text-gray-600 leading-relaxed">
+                    Pekuncen merupakan salah satu lumbung pangan dengan komoditas utama padi, palawija, dan hasil perkebunan yang melimpah.
+                </p>
+            </div>
+            <div class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-md transition-shadow">
+                <h3 class="text-xl font-bold text-cyan-primary mb-3">Industri Kreatif</h3>
+                <p class="text-gray-600 leading-relaxed">
+                    Terdapat berbagai UMKM lokal mulai dari pengolahan makanan tradisional hingga kerajinan tangan yang menembus pasar regional.
+                </p>
+            </div>
+            <div class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-md transition-shadow">
+                <h3 class="text-xl font-bold text-cyan-primary mb-3">Potensi Wisata</h3>
+                <p class="text-gray-600 leading-relaxed">
+                    Keindahan alam pegunungan dan curug menawarkan potensi wisata edukasi dan alam yang sedang dalam tahap pengembangan.
+                </p>
             </div>
         </div>
-    </section>
-
-    <section id="informasi" class="bg-gray-50 py-16 sm:py-24">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-3xl font-bold text-center mb-12">Mengapa Menggunakan Peta Desa Digital?</h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="bg-white p-6 rounded-lg shadow-md border-t-4 border-cyan-primary transition duration-300 hover:shadow-xl">
-                    <div class="text-cyan-primary text-3xl mb-4">📍</div>
-                    <h3 class="text-xl font-semibold mb-2">Data Geospasial Akurat</h3>
-                    <p class="text-gray-600">Akses informasi batas wilayah, tata guna lahan, dan aset desa yang telah diverifikasi.</p>
-                </div>
-                <div class="bg-white p-6 rounded-lg shadow-md border-t-4 border-cyan-primary transition duration-300 hover:shadow-xl">
-                    <div class="text-cyan-primary text-3xl mb-4">💡</div>
-                    <h3 class="text-xl font-semibold mb-2">Visualisasi Interaktif</h3>
-                    <p class="text-gray-600">Peta yang dapat di-zoom, digeser, dan menampilkan berbagai lapisan data secara real-time.</p>
-                </div>
-                <div class="bg-white p-6 rounded-lg shadow-md border-t-4 border-cyan-primary transition duration-300 hover:shadow-xl">
-                    <div class="text-cyan-primary text-3xl mb-4">⚙️</div>
-                    <h3 class="text-xl font-semibold mb-2">Pengembangan Berkelanjutan</h3>
-                    <p class="text-gray-600">Memudahkan perencanaan pembangunan dan pengelolaan sumber daya desa secara efisien.</p>
-                </div>
-            </div>
-        </div>
-    </section>
+    </div>
+</section>
     
     <footer id="kontak" class="bg-gray-800 text-white py-8 mt-12">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">

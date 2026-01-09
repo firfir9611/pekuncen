@@ -1109,7 +1109,7 @@ layer_BatasDesa_2.eachLayer(function(layer) {
 
     // Style Konten Label (Menggunakan font Inter/Sans yang lebih modern)
     var labelContent = (layer.feature.properties['Nama Desa'] !== null) 
-        ? '<div style="color: #323232; font-size: 25pt; font-weight: bold; font-family: \'Open Sans\', sans-serif;">' + layer.feature.properties['Nama Desa'] + '</div>' 
+        ? '<div style="color: #323232; font-size: 12pt; font-weight: bold; font-family: \'Open Sans\', sans-serif;">' + layer.feature.properties['Nama Desa'] + '</div>' 
         : '';
 
     // Bind Tooltip dengan Class Baru
@@ -1117,6 +1117,35 @@ layer_BatasDesa_2.eachLayer(function(layer) {
         permanent: true, 
         offset: [0, 0], 
         direction: 'center', // Agar teks tepat di tengah poligon desa
+        className: '' 
+    });
+
+    labels.push(layer);
+    totalMarkers += 1;
+    layer.added = true;
+    addLabel(layer, i);
+    i++;
+});
+
+var i = 0;
+layer_KantorAdministrasiPemerintahan_9.eachLayer(function(layer) {
+    var context = {
+        feature: layer.feature,
+        variables: {}
+    };
+
+    // ------------------------------------------------------------------------------------------------------------------------------------------
+
+    // Style Konten Label (Menggunakan font Inter/Sans yang lebih modern)
+    var labelContent = (layer.feature.properties['Nama'] !== null) 
+        ? '<div style=" font-size: 10pt; font-family: \'Open Sans\', sans-serif;">' + layer.feature.properties['Nama'] + '</div>' 
+        : '';
+
+    // Bind Tooltip dengan Class Baru
+    layer.bindTooltip(labelContent, {
+        permanent: true, 
+        offset: [15, 0], 
+        direction: 'right', // Agar teks tepat di tengah poligon desa
         className: '' 
     });
 
@@ -1138,22 +1167,34 @@ layer_BatasDesa_2.eachLayer(function(layer) {
         });
     
 
-function syncLabels() {
-    var zoomLevel = map.getZoom();
-    
-    // Tentukan di zoom berapa label ingin muncul (misal: lebih dari zoom 12)
-    var isVisible = zoomLevel >= 13; 
+const labelConfigs = [
+    { 
+        layer: layer_BatasDesa_2, 
+        minZoom: 13, 
+        maxZoom: 15 
+    },
+    { 
+        layer: layer_KantorAdministrasiPemerintahan_9, 
+        minZoom: 16, 
+        maxZoom: 30 
+    }
+];
 
-    layer_BatasDesa_2.eachLayer(function (layer) {
-        if (isVisible) {
-            // Jika label belum terbuka, buka secara paksa
+function syncLabels() {
+    var currentZoom = map.getZoom();
+
+    labelConfigs.forEach(function(config) {
+        var isVisible = currentZoom >= config.minZoom && currentZoom <= config.maxZoom;
+
+        config.layer.eachLayer(function (layer) {
             if (layer.getTooltip()) {
-                layer.openTooltip();
+                if (isVisible) {
+                    layer.openTooltip();
+                } else {
+                    layer.closeTooltip();
+                }
             }
-        } else {
-            // Tutup jika di zoom rendah
-            layer.closeTooltip();
-        }
+        });
     });
 }
 
@@ -1169,28 +1210,31 @@ setTimeout(function() {
 
 // Daftar layer dan batas zoom minimal agar dia muncul
 var layerZoomSettings = [
-    { layer: layer_KantorAdministrasiPemerintahan_9, minZoom: 14 },
-    { layer: layer_JalanDesa_10, minZoom: 14 },
-    { layer: layer_BatasRT_4, minZoom: 15 },
-    { layer: layer_BatasRW_3, minZoom: 15 },
-    { layer: layer_Sungai_11, minZoom: 16 },
-    { layer: layer_FasilitasPendidikan_7, minZoom: 16 },
-    { layer: layer_TempatIbadah_8, minZoom: 16 }
+    { layer: layer_KantorAdministrasiPemerintahan_9, minZoom: 14, maxZoom: 25 },
+    { layer: layer_JalanDesa_10, minZoom: 14, maxZoom: 25 },
+    { layer: layer_BatasRT_4, minZoom: 15, maxZoom: 18 },
+    { layer: layer_BatasRW_3, minZoom: 15, maxZoom: 18 },
+    { layer: layer_Sungai_11, minZoom: 16, maxZoom: 25 },
+    { layer: layer_FasilitasPendidikan_7, minZoom: 16, maxZoom: 25 },
+    { layer: layer_TempatIbadah_8, minZoom: 16, maxZoom: 25 }
 ];
 
 map.on('zoomend', function() {
     var zoomSekarang = map.getZoom();
 
     layerZoomSettings.forEach(function(item) {
-        if (zoomSekarang < item.minZoom) {
-            // Sembunyikan jika zoom out terlalu jauh
-            if (map.hasLayer(item.layer)) {
-                map.removeLayer(item.layer);
-            }
-        } else {
-            // Munculkan kembali jika zoom in masuk ke batasnya
+        // Cek apakah zoom saat ini berada di dalam rentang min dan max
+        var isVisible = zoomSekarang >= item.minZoom && zoomSekarang <= item.maxZoom;
+
+        if (isVisible) {
+            // Jika masuk rentang, munculkan layer jika belum ada di peta
             if (!map.hasLayer(item.layer)) {
                 map.addLayer(item.layer);
+            }
+        } else {
+            // Jika di luar rentang, hapus layer jika sedang ada di peta
+            if (map.hasLayer(item.layer)) {
+                map.removeLayer(item.layer);
             }
         }
     });
